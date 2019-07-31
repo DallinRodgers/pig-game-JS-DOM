@@ -38,26 +38,26 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
       "#current-" + currentPlayer
     ).textContent = roundscore;
   } else {
-    roundscore = 0;
-    document.querySelector(
-      "#current-" + currentPlayer
-    ).textContent = roundscore;
-
     nextPlayer();
   }
 });
 
 document.querySelector(".btn-hold").addEventListener("click", function() {
   scores[currentPlayer] += roundscore;
-  roundscore = 0;
-  document.querySelector("#current-" + currentPlayer).textContent = 0;
-
   document.querySelector("#score-" + currentPlayer).textContent =
     scores[currentPlayer];
-  nextPlayer();
+
+  if (scores[currentPlayer] >= 100) {
+    // End Game
+  } else {
+    nextPlayer();
+  }
 });
 
 function nextPlayer() {
+  roundscore = 0;
+  document.querySelector("#current-" + currentPlayer).textContent = 0;
+  document.querySelector("#current-" + currentPlayer).textContent = roundscore;
   currentPlayer === 0 ? (currentPlayer = 1) : (currentPlayer = 0);
   document.querySelector(".player-0-panel").classList.toggle("active");
   document.querySelector(".player-1-panel").classList.toggle("active");
