@@ -15,11 +15,12 @@
 }
 
 body {
-  background-image: linear-gradient(
-      rgba(62, 20, 20, 0.4),
-      rgba(62, 20, 20, 0.4)
-    ),
-    url(back.jpg);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(131, 131, 131, 1) 47%,
+    rgba(219, 219, 219, 1) 100%
+  );
   background-size: cover;
   background-position: center;
   font-family: Lato;
@@ -83,7 +84,7 @@ body {
   text-align: center;
   font-size: 80px;
   font-weight: 100;
-  color: #eb4d4d;
+  color: #2569b8;
   margin-bottom: 130px;
 }
 
@@ -98,13 +99,13 @@ body {
   content: "\2022";
   font-size: 47px;
   position: absolute;
-  color: #eb4d4d;
+  color: #2569b8;
   top: -7px;
   right: 10px;
 }
 
 .player-current-box {
-  background-color: #eb4d4d;
+  background-color: #2569b8;
   color: #fff;
   width: 40%;
   margin: 0 auto;
@@ -116,7 +117,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 10px;
   font-size: 12px;
-  color: #222;
+  color: rgb(236, 236, 236);
 }
 
 .player-current-score {
@@ -151,7 +152,7 @@ button:focus {
 }
 
 i {
-  color: #eb4d4d;
+  color: #2569b8;
   display: inline-block;
   margin-right: 15px;
   font-size: 32px;
@@ -181,9 +182,65 @@ i {
 }
 
 .winner {
-  background-color: #f7f7f7;
+  background-color: #71b4ff;
 }
 .winner .player-name {
   font-weight: 300;
-  color: #eb4d4d;
+  color: #2569b8;
+}
+/**********************************************
+*** Themes
+**********************************************/
+.themes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 22px;
+}
+.theme {
+  display: inline-block;
+  margin-right: 15px;
+  line-height: 1;
+  padding: 10px;
+  border-radius: 5px;
+}
+.theme:hover {
+  cursor: pointer;
+}
+.light-theme {
+  color: #2569b8;
+  background: #dfdfdf;
+}
+.dark-theme {
+  color: rgb(236, 236, 236);
+  background: #0d2541;
+}
+
+/**********************************************
+*** Dark Theme
+**********************************************/
+.dark-body {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 48, 105, 1) 50%,
+    rgba(37, 105, 184, 1) 100%
+  );
+  color: rgb(236, 236, 236);
+}
+.dark-wrapper {
+  background-color: #969696;
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+}
+/**********************************************
+*** PLAYERS
+**********************************************/
+.dark-active {
+  background-color: #a8a8a8;
+}
+.dark-winner {
+  background-color: #0d2541;
 }

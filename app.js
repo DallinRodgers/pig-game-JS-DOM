@@ -10,10 +10,12 @@ GAME RULES:
 
 */
 
-var scores, roundscore, currentPlayer, gamePlaying, lastRoll;
+var scores, roundscore, currentPlayer, gamePlaying, lastRoll, theme;
 init();
+theme = "light";
 
-// document.querySelector("#current-" + currentPlayer).textContent = dice;
+var body = document.querySelector("body");
+var wrapper = document.querySelector(".wrapper");
 
 document.querySelector(".btn-roll").addEventListener("click", function() {
   if (gamePlaying) {
@@ -58,16 +60,60 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     if (scores[currentPlayer] >= winningScore) {
       // End Game
       document.querySelector("#name-" + currentPlayer).textContent = "WINNER!!";
-      document
-        .querySelector(".player-" + currentPlayer + "-panel")
-        .classList.add("winner");
-      document
-        .querySelector(".player-" + currentPlayer + "-panel")
-        .classList.remove("active");
+      // Remove active class
+      if (theme == "light") {
+        document
+          .querySelector(".player-" + currentPlayer + "-panel")
+          .classList.remove("active");
+      } else {
+        document
+          .querySelector(".player-" + currentPlayer + "-panel")
+          .classList.remove("active");
+        document
+          .querySelector(".player-" + currentPlayer + "-panel")
+          .classList.remove("dark-active");
+      }
+      // Add winner class
+      if (theme == "light") {
+        document
+          .querySelector(".player-" + currentPlayer + "-panel")
+          .classList.add("winner");
+      } else {
+        document
+          .querySelector(".player-" + currentPlayer + "-panel")
+          .classList.add("dark-winner");
+      }
+
       document.querySelector(".dice").style.display = "none";
       gamePlaying = false;
     } else {
       nextPlayer();
+    }
+  }
+});
+
+document.querySelector(".light-theme").addEventListener("click", function() {
+  if (gamePlaying) {
+    if (theme == "dark") {
+      body.classList.remove("dark-body");
+      wrapper.classList.remove("dark-wrapper");
+      document
+        .querySelector(".player-" + currentPlayer + "-panel")
+        .classList.remove("dark-active");
+      theme = "light";
+    }
+  }
+});
+
+document.querySelector(".dark-theme").addEventListener("click", function() {
+  if (gamePlaying) {
+    if (theme == "light") {
+      body.classList.add("dark-body");
+      wrapper.classList.add("dark-wrapper");
+      document
+        .querySelector(".player-" + currentPlayer + "-panel")
+        .classList.add("dark-active");
+      theme = "dark";
     }
   }
 });
@@ -89,12 +135,22 @@ function init() {
   document.getElementById("name-0").textContent = "Player 1";
   document.getElementById("name-1").textContent = "Player 2";
 
+  if (theme == "dark") {
+    document.querySelector(".player-0-panel").classList.remove("dark-winner");
+    document.querySelector(".player-1-panel").classList.remove("dark-winner");
+  }
   document.querySelector(".player-0-panel").classList.remove("winner");
   document.querySelector(".player-1-panel").classList.remove("winner");
 
   document.querySelector(".player-0-panel").classList.remove("active");
   document.querySelector(".player-1-panel").classList.remove("active");
-  document.querySelector(".player-0-panel").classList.add("active");
+  if (theme == "dark") {
+    document.querySelector(".player-0-panel").classList.add("active");
+    document.querySelector(".player-0-panel").classList.add("dark-active");
+  } else {
+    document.querySelector(".player-0-panel").classList.add("active");
+  }
+  document.querySelector(".final-score").value = "";
 }
 
 function nextPlayer() {
@@ -103,7 +159,14 @@ function nextPlayer() {
   document.querySelector("#current-" + currentPlayer).textContent = 0;
   document.querySelector("#current-" + currentPlayer).textContent = roundscore;
   currentPlayer === 0 ? (currentPlayer = 1) : (currentPlayer = 0);
-  document.querySelector(".player-0-panel").classList.toggle("active");
-  document.querySelector(".player-1-panel").classList.toggle("active");
+  if (theme == "light") {
+    document.querySelector(".player-0-panel").classList.toggle("active");
+    document.querySelector(".player-1-panel").classList.toggle("active");
+  } else {
+    document.querySelector(".player-0-panel").classList.toggle("active");
+    document.querySelector(".player-1-panel").classList.toggle("active");
+    document.querySelector(".player-0-panel").classList.toggle("dark-active");
+    document.querySelector(".player-1-panel").classList.toggle("dark-active");
+  }
   document.querySelector(".dice").style.display = "none";
 }
