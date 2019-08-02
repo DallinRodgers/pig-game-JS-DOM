@@ -25,12 +25,13 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     var diceDOM = document.querySelector(".dice");
     diceDOM.style.display = "block";
     diceDOM.src = "dice-" + dice + ".png";
-    // Update roundscore if the rolled number is NOT 1
-    if (lastRoll === 6 && dice === 6) {
-      scores[currentPlayer] = 0;
-      document.querySelector("#score-" + currentPlayer).textContent = "0";
-      nextPlayer();
-    } else if (dice !== 1) {
+    // Make the game harder
+    // if (lastRoll === 6 && dice === 6) {
+    //   scores[currentPlayer] = 0;
+    //   document.querySelector("#score-" + currentPlayer).textContent = "0";
+    //   nextPlayer();
+    // }
+    if (dice !== 1) {
       roundscore += dice;
       document.querySelector(
         "#current-" + currentPlayer
