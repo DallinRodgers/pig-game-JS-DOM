@@ -17,6 +17,9 @@ theme = "light";
 var body = document.querySelector("body");
 var wrapper = document.querySelector(".wrapper");
 
+const panelOne = document.querySelector(".player-0-panel");
+const panelTwo = document.querySelector(".player-1-panel");
+
 document.querySelector(".btn-roll").addEventListener("click", function() {
   if (gamePlaying) {
     // Get Random Number
@@ -127,6 +130,9 @@ function init() {
   currentPlayer = 0;
   gamePlaying = true;
 
+  const panelOne = document.querySelector(".player-0-panel");
+  const panelTwo = document.querySelector(".player-1-panel");
+
   document.querySelector(".dice").style.display = "none";
 
   document.getElementById("score-0").textContent = "0";
@@ -137,19 +143,19 @@ function init() {
   document.getElementById("name-1").textContent = "Player 2";
 
   if (theme == "dark") {
-    document.querySelector(".player-0-panel").classList.remove("dark-winner");
-    document.querySelector(".player-1-panel").classList.remove("dark-winner");
+    panelOne.classList.remove("dark-winner");
+    panelTwo.classList.remove("dark-winner");
   }
-  document.querySelector(".player-0-panel").classList.remove("winner");
-  document.querySelector(".player-1-panel").classList.remove("winner");
+  panelOne.classList.remove("winner");
+  panelTwo.classList.remove("winner");
 
-  document.querySelector(".player-0-panel").classList.remove("active");
-  document.querySelector(".player-1-panel").classList.remove("active");
+  panelOne.classList.remove("active");
+  panelTwo.classList.remove("active");
   if (theme == "dark") {
-    document.querySelector(".player-0-panel").classList.add("active");
-    document.querySelector(".player-0-panel").classList.add("dark-active");
+    panelOne.classList.add("active");
+    panelOne.classList.add("dark-active");
   } else {
-    document.querySelector(".player-0-panel").classList.add("active");
+    panelOne.classList.add("active");
   }
   document.querySelector(".final-score").value = "";
 }
@@ -161,13 +167,13 @@ function nextPlayer() {
   document.querySelector("#current-" + currentPlayer).textContent = roundscore;
   currentPlayer === 0 ? (currentPlayer = 1) : (currentPlayer = 0);
   if (theme == "light") {
-    document.querySelector(".player-0-panel").classList.toggle("active");
-    document.querySelector(".player-1-panel").classList.toggle("active");
+    panelOne.classList.toggle("active");
+    panelTwo.classList.toggle("active");
   } else {
-    document.querySelector(".player-0-panel").classList.toggle("active");
-    document.querySelector(".player-1-panel").classList.toggle("active");
-    document.querySelector(".player-0-panel").classList.toggle("dark-active");
-    document.querySelector(".player-1-panel").classList.toggle("dark-active");
+    panelOne.classList.toggle("active");
+    panelTwo.classList.toggle("active");
+    panelOne.classList.toggle("dark-active");
+    panelTwo.classList.toggle("dark-active");
   }
   document.querySelector(".dice").style.display = "none";
 }
